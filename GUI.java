@@ -1,10 +1,10 @@
+package Sprint3;
+
 import javafx.application.Application;
 import java.util.List;
 import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
-
-
 
 import javafx.scene.Scene;
 import javafx.scene.Group;
@@ -58,6 +58,13 @@ public class GUI extends Application {
     Button function;
     Button swap;
     Button printer;
+    ObservableList<String> options =
+            FXCollections.observableArrayList(
+                    "Option 1",
+                    "Option 2",
+                    "Option 3"
+            );
+    final ComboBox comboBox = new ComboBox(options);
 
     Button b1 = new Button("   ");
     Button b2 = new Button("   ");
@@ -76,16 +83,14 @@ public class GUI extends Application {
     Button round6 = new Button();
     Button round7 = new Button();
     Button round8 = new Button();
-//    Button round1C = new Button();
-//    Button round2C = new Button();
-//    Button round3C = new Button();
-//    Button round4C = new Button();
-//    Button round5C = new Button();
-//    Button round6C = new Button();
-//    Button round7C = new Button();
-//    Button round8C = new Button();
-    Button usb = new Button();
-
+    Button round1C = new Button();
+    Button round2C = new Button();
+    Button round3C = new Button();
+    Button round4C = new Button();
+    Button round5C = new Button();
+    Button round6C = new Button();
+    Button round7C = new Button();
+    Button round8C = new Button();
 
     Button np0 = new Button("0");
     Button np1 = new Button("1");
@@ -128,17 +133,10 @@ public class GUI extends Application {
     Label finish = new Label("Finish");
     Label enable2 = new Label("Enable/Disable");
     Label under = new Label("Queue / Running / Final Time");
-    Label chan = new Label("CHAN");
-    Label port = new Label("USB PORT");
-
     Line line1 = new Line(0, 500, 700, 500);
-
 
     Box print = new Box(150, 150, 150);
     Box screen = new Box(250, 200, 200);
-
-
-
 
     public static void main(String[] args) {
 
@@ -151,43 +149,6 @@ public class GUI extends Application {
         window = primaryStage;
 
         window.setTitle("ChronoTimer");
-
-        ComboBox round1C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
-        round1C.getSelectionModel().select(0);
-        round1C.setId("changed");
-
-        ComboBox round2C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
-        round2C.getSelectionModel().select(0);
-        round2C.setId("changed");
-
-        ComboBox round3C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
-        round3C.getSelectionModel().select(0);
-        round3C.setId("changed");
-
-        ComboBox round4C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
-        round4C.getSelectionModel().select(0);
-        round4C.setId("changed");
-
-        ComboBox round5C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
-        round5C.getSelectionModel().select(0);
-        round5C.setId("changed");
-
-        ComboBox round6C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
-        round6C.getSelectionModel().select(0);
-        round6C.setId("changed");
-
-        ComboBox round7C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
-        round7C.getSelectionModel().select(0);
-        round7C.setId("changed");
-
-        ComboBox round8C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
-        round8C.getSelectionModel().select(0);
-        round8C.setId("changed");
-
-//        ComboBox normalCombobox = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
-//        normalCombobox.getSelectionModel().select(0);
-
-
 
         // power1.setOnAction(e -> window.setScene(ON));
         power1.setTranslateX(10);
@@ -221,13 +182,13 @@ public class GUI extends Application {
         seven.setTranslateX(407);
         seven.setTranslateY(40);
 
-        oneC.setTranslateX(63);
+        oneC.setTranslateX(23);
         oneC.setTranslateY(508);
-        threeC.setTranslateX(103);
+        threeC.setTranslateX(63);
         threeC.setTranslateY(508);
-        fiveC.setTranslateX(143);
+        fiveC.setTranslateX(103);
         fiveC.setTranslateY(508);
-        sevenC.setTranslateX(183);
+        sevenC.setTranslateX(143);
         sevenC.setTranslateY(508);
 
         b1.setTranslateX(250);
@@ -248,13 +209,13 @@ public class GUI extends Application {
         eight.setTranslateX(407);
         eight.setTranslateY(140);
 
-        twoC.setTranslateX(63);
+        twoC.setTranslateX(23);
         twoC.setTranslateY(545);
-        fourC.setTranslateX(103);
+        fourC.setTranslateX(63);
         fourC.setTranslateY(545);
-        sixC.setTranslateX(143);
+        sixC.setTranslateX(103);
         sixC.setTranslateY(545);
-        eightC.setTranslateX(183);
+        eightC.setTranslateX(143);
         eightC.setTranslateY(545);
 
         b2.setTranslateX(250);
@@ -277,9 +238,6 @@ public class GUI extends Application {
 
         under.setTranslateX(210);
         under.setTranslateY(455);
-
-//        combobox.setStyle("fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
-//                + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
 
         round1.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                 + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
@@ -373,21 +331,12 @@ public class GUI extends Application {
                 + "-fx-max-width: 30px; " + "-fx-max-height: 35px;");
         Darrow.setStyle("-fx-font-size: 13px; " + "-fx-min-width: 30px; " + "-fx-min-height: 35px; "
                 + "-fx-max-width: 30px; " + "-fx-max-height: 35px;");
-        usb.setStyle("-fx-min-width: 75px; " + "-fx-min-height: 20px; " + "-fx-max-width: 75px; "
-                + "-fx-max-height: 20px;");
-
 
         screen.setTranslateX(300);
         screen.setTranslateY(350);
 
         print.setTranslateX(600);
         print.setTranslateY(125);
-
-        usb.setTranslateX(100);
-        usb.setTranslateY(600);
-
-        port.setTranslateX(100);
-        port.setTranslateY(600);
 
         np1.setTranslateX(520);
         np1.setTranslateY(300);
@@ -441,32 +390,22 @@ public class GUI extends Application {
         round8.setTranslateX(407);
         round8.setTranslateY(200);
 
-        round1C.setTranslateX(60);
+        round1C.setTranslateX(20);
         round1C.setTranslateY(525);
-        round3C.setTranslateX(100);
+        round3C.setTranslateX(60);
         round3C.setTranslateY(525);
-        round5C.setTranslateX(140);
+        round5C.setTranslateX(100);
         round5C.setTranslateY(525);
-        round7C.setTranslateX(180);
+        round7C.setTranslateX(140);
         round7C.setTranslateY(525);
 
-        chan.setTranslateX(10);
-        chan.setTranslateY(515);
-
-        usb.setTranslateX(400);
-        usb.setTranslateY(530);
-
-        port.setTranslateX(480);
-        port.setTranslateY(530);
-
-
-        round2C.setTranslateX(60);
+        round2C.setTranslateX(20);
         round2C.setTranslateY(563);
-        round4C.setTranslateX(100);
+        round4C.setTranslateX(60);
         round4C.setTranslateY(563);
-        round6C.setTranslateX(140);
+        round6C.setTranslateX(100);
         round6C.setTranslateY(563);
-        round8C.setTranslateX(180);
+        round8C.setTranslateX(140);
         round8C.setTranslateY(563);
 
         Group off = new Group();
@@ -481,8 +420,6 @@ public class GUI extends Application {
         stdoutArea.setTranslateY(50);
         stdoutArea.setPrefColumnCount(15);
         stdoutArea.setPrefRowCount(10);
-
-
 
         Rectangle rect = new Rectangle(700, 500, Color.BLACK);
         off.getChildren().add(rect);
@@ -540,7 +477,6 @@ public class GUI extends Application {
         on.getChildren().add(round6);
         on.getChildren().add(round7);
         on.getChildren().add(round8);
-        on.getChildren().add(chan);
 
         on.getChildren().add(round1C);
         on.getChildren().add(round2C);
@@ -550,7 +486,6 @@ public class GUI extends Application {
         on.getChildren().add(round6C);
         on.getChildren().add(round7C);
         on.getChildren().add(round8C);
-
 
         on.getChildren().add(np0);
         on.getChildren().add(np1);
@@ -572,9 +507,6 @@ public class GUI extends Application {
 
         on.getChildren().add(under);
         on.getChildren().add(line1);
-
-        on.getChildren().add(usb);
-        on.getChildren().add(port);
 
         power1.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
@@ -628,6 +560,7 @@ public class GUI extends Application {
             public void handle(ActionEvent event) {
                 Chrono.trigChannel(1);
                 Chrono.updScreen();
+                update();
             }
         });
 
@@ -635,6 +568,7 @@ public class GUI extends Application {
             public void handle(ActionEvent event) {
                 Chrono.trigChannel(2);
                 Chrono.updScreen();
+                update();
             }
         });
 
@@ -642,6 +576,7 @@ public class GUI extends Application {
             public void handle(ActionEvent event) {
                 Chrono.trigChannel(3);
                 Chrono.updScreen();
+                update();
             }
         });
 
@@ -649,6 +584,7 @@ public class GUI extends Application {
             public void handle(ActionEvent event) {
                 Chrono.trigChannel(4);
                 Chrono.updScreen();
+                update();
             }
         });
 
@@ -656,6 +592,7 @@ public class GUI extends Application {
             public void handle(ActionEvent event) {
                 Chrono.trigChannel(5);
                 Chrono.updScreen();
+                update();
             }
         });
 
@@ -663,6 +600,7 @@ public class GUI extends Application {
             public void handle(ActionEvent event) {
                 Chrono.trigChannel(6);
                 Chrono.updScreen();
+                update();
             }
         });
 
@@ -670,6 +608,7 @@ public class GUI extends Application {
             public void handle(ActionEvent event) {
                 Chrono.trigChannel(7);
                 Chrono.updScreen();
+                update();
             }
         });
 
@@ -677,118 +616,63 @@ public class GUI extends Application {
             public void handle(ActionEvent event) {
                 Chrono.trigChannel(8);
                 Chrono.updScreen();
+                update();
             }
         });
 
         round1.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Chrono.togChannel(1);
-                if (Chrono.channels[1]) {
-                    round1.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
-                            + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
-                            + "-fx-max-height: 16px;");
-                } else {
-                    round1.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
-                            + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
-                }
+                update();
             }
         });
 
         round2.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Chrono.togChannel(2);
-                if (Chrono.channels[2]) {
-                    round2.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
-                            + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
-                            + "-fx-max-height: 16px;");
-                } else {
-                    round2.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
-                            + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
-                }
+                update();
             }
         });
 
         round3.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Chrono.togChannel(3);
-                if (Chrono.channels[3]) {
-                    round3.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
-                            + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
-                            + "-fx-max-height: 16px;");
-                } else {
-                    round3.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
-                            + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
-                }
+                update();
             }
         });
 
         round4.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Chrono.togChannel(4);
-                if (Chrono.channels[4]) {
-                    round4.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
-                            + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
-                            + "-fx-max-height: 16px;");
-                } else {
-                    round4.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
-                            + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
-                }
+                update();
             }
         });
 
         round5.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Chrono.togChannel(5);
-                if (Chrono.channels[5]) {
-                    round5.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
-                            + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
-                            + "-fx-max-height: 16px;");
-                } else {
-                    round5.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
-                            + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
-                }
+                update();
             }
         });
 
         round6.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Chrono.togChannel(6);
-                if (Chrono.channels[6]) {
-                    round6.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
-                            + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
-                            + "-fx-max-height: 16px;");
-                } else {
-                    round6.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
-                            + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
-                }
+                update();
             }
         });
 
         round7.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Chrono.togChannel(7);
-                if (Chrono.channels[7]) {
-                    round7.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
-                            + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
-                            + "-fx-max-height: 16px;");
-                } else {
-                    round7.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
-                            + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
-                }
+                update();
             }
         });
 
         round8.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 Chrono.togChannel(8);
-                if (Chrono.channels[8]) {
-                    round8.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
-                            + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
-                            + "-fx-max-height: 16px;");
-                } else {
-                    round8.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
-                            + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
-                }
+                update();
             }
         });
 
@@ -830,6 +714,8 @@ public class GUI extends Application {
                 if (!Chrono.event.isEmpty()) {
                     stdoutArea.appendText("4");
                     racer = racer.concat("4");
+                }else {
+                    Chrono.event("pargrp");
                 }
 
             }
@@ -914,6 +800,7 @@ public class GUI extends Application {
                             Chrono.updGRPF(racer);
                             racer = "";
                         }
+                        Chrono.updScreen();
                     }
                 }
 
@@ -927,19 +814,102 @@ public class GUI extends Application {
             }
         });
 
-//        round1C.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                comboBox.isPressed();
-//            }
-//        });
-
         OF = new Scene(off, 700, 500);
         ON = new Scene(on, 700, 600);
         window.setScene(OF);
         window.show();
     }
-
+    public void update()
+    {
+        if(Chrono.channels[1])
+        {
+            round1.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
+                    + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
+                    + "-fx-max-height: 16px;");
+        }
+        else
+        {
+            round1.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
+                    + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
+        }
+        if(Chrono.channels[2])
+        {
+            round2.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
+                    + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
+                    + "-fx-max-height: 16px;");
+        }
+        else
+        {
+            round2.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
+                    + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
+        }
+        if(Chrono.channels[3])
+        {
+            round3.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
+                    + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
+                    + "-fx-max-height: 16px;");
+        }
+        else
+        {
+            round3.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
+                    + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
+        }
+        if(Chrono.channels[4])
+        {
+            round4.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
+                    + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
+                    + "-fx-max-height: 16px;");
+        }
+        else
+        {
+            round4.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
+                    + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
+        }
+        if(Chrono.channels[5])
+        {
+            round5.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
+                    + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
+                    + "-fx-max-height: 16px;");
+        }
+        else
+        {
+            round5.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
+                    + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
+        }
+        if(Chrono.channels[6])
+        {
+            round6.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
+                    + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
+                    + "-fx-max-height: 16px;");
+        }
+        else
+        {
+            round6.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
+                    + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
+        }
+        if(Chrono.channels[7])
+        {
+            round7.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
+                    + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
+                    + "-fx-max-height: 16px;");
+        }
+        else
+        {
+            round7.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
+                    + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
+        }
+        if(Chrono.channels[8])
+        {
+            round8.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
+                    + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
+                    + "-fx-max-height: 16px;");
+        }
+        else
+        {
+            round8.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
+                    + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
+        }
+    }
     public void reset() {
         round1.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                 + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
