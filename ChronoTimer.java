@@ -10,6 +10,7 @@ public class ChronoTimer {
     static final int MAX_CHANNELS = 1000;
     static boolean power;
     static boolean run;
+    static boolean parun;
     static String event = "";
     static boolean out;
     static Scanner console = new Scanner(System.in);
@@ -60,7 +61,7 @@ public class ChronoTimer {
     //static void num() {
     //    totRacers++;
     //    racers.add(new Racer(Integer.parseInt(splitted[1]), totRacers));
-        //System.out.println("Racer " + splitted[1] + " has been added");
+    //System.out.println("Racer " + splitted[1] + " has been added");
     //}
 
     static void num(int racernum) {
@@ -162,6 +163,7 @@ public class ChronoTimer {
     static void endrun() {
         Converter.ConvertTo(completed, runCounter);
         run = false;
+        parun = false;
         racers.clear();
         toFinish.clear();
         completed.clear();
@@ -178,6 +180,7 @@ public class ChronoTimer {
         }
 
         run = false;
+        parun = false;
         event = "";
         racers.clear();
         toFinish.clear();
@@ -197,7 +200,7 @@ public class ChronoTimer {
                 InitGRP();
                 GUI.stdoutArea.appendText("Racers are off!\n");
             }
-            else if(event.equalsIgnoreCase("PARFRP")) {
+            else if(event.equalsIgnoreCase("PARGRP")) {
                 InitGRP();
                 GUI.stdoutArea.appendText("Racers are off!\n");
             }
@@ -228,6 +231,7 @@ public class ChronoTimer {
         }
 
         else if(event.equalsIgnoreCase("PARGRP")){
+            GUI.stdoutArea.appendText("Toggles disabled for group event\n");
             return;
         }
 
@@ -253,14 +257,33 @@ public class ChronoTimer {
             } else {
                 GUI.stdoutArea.appendText("Invalid channel for this race\n");
             }
+            updScreen();
             return;
         }
         else if(event.equalsIgnoreCase("PARGRP")){
-            if (channel == 1) {
+            if (channel == 1 && parun == false)
+            {
                 start();
-            } else if (channel == 2) {
-
+                parun = true;
             }
+            else
+            {
+                for(int i = 0; i < toFinish.size(); ++i)
+                {
+                    Racer temp = toFinish.get(i);
+                    if(temp.index == channel)
+                    {
+                        temp.fin = time.millis();
+                        completed.add(toFinish.remove(i));
+                        channels[i] = false;
+                    }
+                }
+            }
+            if(completed.size() == totRacers)
+            {
+                GUI.stdoutArea.appendText(" all racers finished " + "\n");
+            }
+            updScreen();
             return;
         }
 
@@ -407,6 +430,7 @@ public class ChronoTimer {
                     }
                 }
             }
+            updScreen();
         }
 
         else {
@@ -461,17 +485,23 @@ public class ChronoTimer {
         }
 
         else if(event.equalsIgnoreCase("PARGRP")){
-            for(int i =0; i <= totRacers; i++){
+            for(int i =  0; i <= totRacers; i++){
                 channels[i] = true;
             }
-
+            parun = false;
             long initial = time.millis();
 
-            for (int i = 0; i <= totRacers; ++i) {
+            for (int i = 0; i < totRacers; ++i) {
                 Racer temp = racers.get(i);
                 temp.start = initial;
+                temp.index = i+1;
             }
         }
+
+        while (!racers.isEmpty()) {
+            toFinish.add(racers.pop());
+        }
+        updScreen();
     }
     // update the array after each trig 2 call
     static void updGRP() {
@@ -511,8 +541,9 @@ public class ChronoTimer {
             }
         }
         // add racers to completed
-        while (!racers.isEmpty()) {
-            completed.add(racers.pop());
+        while (!racers.isEmpty())
+        {
+            completed.add(toFinish.pop());
         }
         updScreen();
     }
@@ -535,4 +566,5 @@ public class ChronoTimer {
                     + "  " + stopWatch.formatTime(completed.get(i).fin - completed.get(i).start) + "\n");
         }
     }
+
 }
