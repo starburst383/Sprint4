@@ -275,7 +275,7 @@ public class ChronoTimer {
                     {
                         temp.fin = time.millis();
                         completed.add(toFinish.remove(i));
-                        channels[i] = false;
+                        channels[channel] = false;
                     }
                 }
             }
@@ -566,5 +566,4 @@ public class ChronoTimer {
                     + "  " + stopWatch.formatTime(completed.get(i).fin - completed.get(i).start) + "\n");
         }
     }
-
 }
