@@ -50,6 +50,27 @@ public class ChronoTimerTests {
         assertFalse(a.getPower());
     }
 
+     @Test
+    public void event() throws Exception {
+        ChronoTimerFORTESTSONLY a = new ChronoTimerFORTESTSONLY();
+        a.setPower();
+        assertEquals("", a.getEvent());
+        a.event("XXXXXXXXXX");
+        assertEquals("", a.getEvent());
+        a.event("IND");
+        assertEquals("IND", a.getEvent());
+        a.reset();
+        a.event("PARIND");
+        assertEquals("PARIND", a.getEvent());
+        a.reset();
+        a.event("GRP");
+        assertEquals("GRP", a.getEvent());
+        a.reset();
+        a.event("PARGRP");
+        assertEquals("PARGRP", a.getEvent());
+
+    }
+
     @Test
     public void run() throws Exception {
         ChronoTimerFORTESTSONLY a = new ChronoTimerFORTESTSONLY();
@@ -57,22 +78,68 @@ public class ChronoTimerTests {
         assertFalse(a.getRun());
         a.newRun();
         assertTrue(a.getRun());
+        a.endrun();
+        assertFalse(a.getRun());
     }
 
     @Test
-    public void event() throws Exception {
+    public void runAndEvent() throws Exception {
         ChronoTimerFORTESTSONLY a = new ChronoTimerFORTESTSONLY();
         a.setPower();
+        assertFalse(a.getRun());
+        assertEquals("", a.getEvent());
+        a.event("IND");
+        assertEquals("IND", a.getEvent());
+        a.newRun();
+        assertTrue(a.getRun());
+        assertEquals("IND", a.getEvent());
+        a.endrun();
+        assertFalse(a.getRun());
+        assertEquals("IND", a.getEvent());
     }
 
     @Test
     public void toggle() throws Exception {
         ChronoTimerFORTESTSONLY a = new ChronoTimerFORTESTSONLY();
         a.setPower();
+        //turn all channel on
+        for(int i = 0; i < 8; ++i) {
+            a.togChannel(i);
+            assertTrue(a.channels[i]);
+        }
+        //turn all channels off
+        for(int i = 0; i < 8; ++i) {
+            a.togChannel(i);
+            assertFalse(a.channels[i]);
+        }
     }
 
     @Test
     public void reset() throws Exception {
+        ChronoTimerFORTESTSONLY a = new ChronoTimerFORTESTSONLY();
+        a.setPower();
+        //turn all channles on
+        for(int i = 0; i < 8; ++i) {
+            a.togChannel(i);
+            assertTrue(a.channels[i]);
+        }
+        //reset all channels
+        a.reset();
+        //test their value
+        for(int i = 0; i < 8; ++i) {
+            assertFalse(a.channels[i]);
+        }
+        //set up run
+        a.event("IND");
+        a.newRun();
+        a.num(11);
+        // reset all values
+        a.reset();
+        //test
+        assertFalse(a.getRun());
+        assertEquals("", a.getEvent());
+        assertEquals(0, a.totRacers);
+
     }
 
     @Deployment
