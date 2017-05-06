@@ -142,6 +142,49 @@ public class ChronoTimerTests {
 
     }
 
+    
+    @Test
+    public void num() throws Exception {
+        ChronoTimerFORTESTSONLY a = new ChronoTimerFORTESTSONLY();
+        a.setPower();
+        a.event("IND");
+        a.newRun();
+        for(int i = 0; i < 8; ++i) {
+            a.togChannel(i);
+            assertTrue(a.channels[i]);
+        }
+
+        a.num(11);
+        a.num(12);
+        a.num(13);
+        a.num(14);
+
+        assertEquals(4, a.totRacers);
+        assertEquals(4, a.racers.size());
+        for(int i = 0; i < 4; ++i) {
+            assertEquals(11 + i, a.racers.get(i).racerNum);
+        }
+    }
+
+    @Test
+    public void trigger() throws Exception {
+        ChronoTimerFORTESTSONLY a = new ChronoTimerFORTESTSONLY();
+        a.setPower();
+        a.event("IND");
+        a.newRun();
+        for(int i = 0; i < 8; ++i) {
+            a.togChannel(i);
+            assertTrue(a.channels[i]);
+        }
+        a.num(11);
+        a.num(12);
+        a.num(13);
+        a.num(14);
+
+        for(int i = 0; i < 4; ++i) {
+
+
+        }
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
