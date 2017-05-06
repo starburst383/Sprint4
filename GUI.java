@@ -93,8 +93,8 @@ public class GUI extends Application {
 //     Button round8C = new Button();
 
     Button usb = new Button();
-    
-    
+
+
     Button np0 = new Button("0");
     Button np1 = new Button("1");
     Button np2 = new Button("2");
@@ -130,7 +130,7 @@ public class GUI extends Application {
     Label sixC = new Label("6");
     Label sevenC = new Label("7");
     Label eightC = new Label("8");
-    
+
     Label chan = new Label("CHAN");
     Label port = new Label("USB PORT");
 
@@ -155,7 +155,7 @@ public class GUI extends Application {
         window = primaryStage;
 
         window.setTitle("ChronoTimer");
-        
+
         ComboBox round1C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
         round1C.getSelectionModel().select(0);
         round1C.setId("changed");
@@ -188,9 +188,9 @@ public class GUI extends Application {
         round8C.getSelectionModel().select(0);
         round8C.setId("changed");
 
-        
-        
-        
+
+
+
 
         // power1.setOnAction(e -> window.setScene(ON));
         power1.setTranslateX(10);
@@ -232,7 +232,7 @@ public class GUI extends Application {
         fiveC.setTranslateY(508);
         sevenC.setTranslateX(183);
         sevenC.setTranslateY(508);
-        
+
         b1.setTranslateX(250);
         b1.setTranslateY(60);
         b3.setTranslateX(300);
@@ -381,7 +381,7 @@ public class GUI extends Application {
 
         print.setTranslateX(600);
         print.setTranslateY(125);
-        
+
         usb.setTranslateX(100);
         usb.setTranslateY(600);
 
@@ -537,7 +537,7 @@ public class GUI extends Application {
         on.getChildren().add(round6);
         on.getChildren().add(round7);
         on.getChildren().add(round8);
-        
+
         on.getChildren().add(chan);
 
         on.getChildren().add(round1C);
@@ -569,7 +569,7 @@ public class GUI extends Application {
 
         on.getChildren().add(under);
         on.getChildren().add(line1);
-        
+
         on.getChildren().add(usb);
         on.getChildren().add(port);
 
@@ -687,56 +687,56 @@ public class GUI extends Application {
 
         round1.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Chrono.togChannel(1);
+                Chrono.togChannel(0);
                 update();
             }
         });
 
         round2.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Chrono.togChannel(2);
+                Chrono.togChannel(1);
                 update();
             }
         });
 
         round3.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Chrono.togChannel(3);
+                Chrono.togChannel(2);
                 update();
             }
         });
 
         round4.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Chrono.togChannel(4);
+                Chrono.togChannel(3);
                 update();
             }
         });
 
         round5.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Chrono.togChannel(5);
+                Chrono.togChannel(4);
                 update();
             }
         });
 
         round6.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Chrono.togChannel(6);
+                Chrono.togChannel(5);
                 update();
             }
         });
 
         round7.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Chrono.togChannel(7);
+                Chrono.togChannel(6);
                 update();
             }
         });
 
         round8.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                Chrono.togChannel(8);
+                Chrono.togChannel(7);
                 update();
             }
         });
@@ -886,7 +886,7 @@ public class GUI extends Application {
     }
     public void update()
     {
-        if(Chrono.channels[1])
+        if(Chrono.channels[0])
         {
             round1.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
@@ -897,7 +897,7 @@ public class GUI extends Application {
             round1.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
-        if(Chrono.channels[2])
+        if(Chrono.channels[1])
         {
             round2.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
@@ -908,7 +908,7 @@ public class GUI extends Application {
             round2.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
-        if(Chrono.channels[3])
+        if(Chrono.channels[2])
         {
             round3.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
@@ -919,7 +919,7 @@ public class GUI extends Application {
             round3.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
-        if(Chrono.channels[4])
+        if(Chrono.channels[3])
         {
             round4.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
@@ -930,7 +930,7 @@ public class GUI extends Application {
             round4.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
-        if(Chrono.channels[5])
+        if(Chrono.channels[4])
         {
             round5.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
@@ -941,7 +941,7 @@ public class GUI extends Application {
             round5.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
-        if(Chrono.channels[6])
+        if(Chrono.channels[5])
         {
             round6.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
@@ -952,7 +952,7 @@ public class GUI extends Application {
             round6.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
-        if(Chrono.channels[7])
+        if(Chrono.channels[6])
         {
             round7.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
@@ -963,7 +963,7 @@ public class GUI extends Application {
             round7.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
-        if(Chrono.channels[8])
+        if(Chrono.channels[7])
         {
             round8.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
@@ -993,4 +993,4 @@ public class GUI extends Application {
         round8.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                 + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
     }
-}
+
