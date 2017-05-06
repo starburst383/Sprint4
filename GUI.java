@@ -83,15 +83,18 @@ public class GUI extends Application {
     Button round6 = new Button();
     Button round7 = new Button();
     Button round8 = new Button();
-    Button round1C = new Button();
-    Button round2C = new Button();
-    Button round3C = new Button();
-    Button round4C = new Button();
-    Button round5C = new Button();
-    Button round6C = new Button();
-    Button round7C = new Button();
-    Button round8C = new Button();
+//     Button round1C = new Button();
+//     Button round2C = new Button();
+//     Button round3C = new Button();
+//     Button round4C = new Button();
+//     Button round5C = new Button();
+//     Button round6C = new Button();
+//     Button round7C = new Button();
+//     Button round8C = new Button();
 
+    Button usb = new Button();
+    
+    
     Button np0 = new Button("0");
     Button np1 = new Button("1");
     Button np2 = new Button("2");
@@ -127,6 +130,8 @@ public class GUI extends Application {
     Label sixC = new Label("6");
     Label sevenC = new Label("7");
     Label eightC = new Label("8");
+    
+    Label port = new Label("USB PORT");
 
     Label start = new Label("Start");
     Label enable1 = new Label("Enable/Disable");
@@ -149,6 +154,42 @@ public class GUI extends Application {
         window = primaryStage;
 
         window.setTitle("ChronoTimer");
+        
+        ComboBox round1C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
+        round1C.getSelectionModel().select(0);
+        round1C.setId("changed");
+
+        ComboBox round2C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
+        round2C.getSelectionModel().select(0);
+        round2C.setId("changed");
+
+        ComboBox round3C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
+        round3C.getSelectionModel().select(0);
+        round3C.setId("changed");
+
+        ComboBox round4C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
+        round4C.getSelectionModel().select(0);
+        round4C.setId("changed");
+
+        ComboBox round5C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
+        round5C.getSelectionModel().select(0);
+        round5C.setId("changed");
+
+        ComboBox round6C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
+        round6C.getSelectionModel().select(0);
+        round6C.setId("changed");
+
+        ComboBox round7C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
+        round7C.getSelectionModel().select(0);
+        round7C.setId("changed");
+
+        ComboBox round8C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
+        round8C.getSelectionModel().select(0);
+        round8C.setId("changed");
+
+        
+        
+        
 
         // power1.setOnAction(e -> window.setScene(ON));
         power1.setTranslateX(10);
@@ -337,6 +378,12 @@ public class GUI extends Application {
 
         print.setTranslateX(600);
         print.setTranslateY(125);
+        
+        usb.setTranslateX(100);
+        usb.setTranslateY(600);
+
+        port.setTranslateX(100);
+        port.setTranslateY(600);
 
         np1.setTranslateX(520);
         np1.setTranslateY(300);
@@ -390,22 +437,32 @@ public class GUI extends Application {
         round8.setTranslateX(407);
         round8.setTranslateY(200);
 
-        round1C.setTranslateX(20);
+        round1C.setTranslateX(60);
         round1C.setTranslateY(525);
-        round3C.setTranslateX(60);
+        round3C.setTranslateX(100);
         round3C.setTranslateY(525);
-        round5C.setTranslateX(100);
+        round5C.setTranslateX(140);
         round5C.setTranslateY(525);
-        round7C.setTranslateX(140);
+        round7C.setTranslateX(180);
         round7C.setTranslateY(525);
 
-        round2C.setTranslateX(20);
+        chan.setTranslateX(10);
+        chan.setTranslateY(515);
+
+        usb.setTranslateX(400);
+        usb.setTranslateY(530);
+
+        port.setTranslateX(480);
+        port.setTranslateY(530);
+
+
+        round2C.setTranslateX(60);
         round2C.setTranslateY(563);
-        round4C.setTranslateX(60);
+        round4C.setTranslateX(100);
         round4C.setTranslateY(563);
-        round6C.setTranslateX(100);
+        round6C.setTranslateX(140);
         round6C.setTranslateY(563);
-        round8C.setTranslateX(140);
+        round8C.setTranslateX(180);
         round8C.setTranslateY(563);
 
         Group off = new Group();
@@ -477,6 +534,8 @@ public class GUI extends Application {
         on.getChildren().add(round6);
         on.getChildren().add(round7);
         on.getChildren().add(round8);
+        
+        on.getChildren().add(chan);
 
         on.getChildren().add(round1C);
         on.getChildren().add(round2C);
@@ -507,6 +566,9 @@ public class GUI extends Application {
 
         on.getChildren().add(under);
         on.getChildren().add(line1);
+        
+        on.getChildren().add(usb);
+        on.getChildren().add(port);
 
         power1.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
