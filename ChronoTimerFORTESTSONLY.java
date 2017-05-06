@@ -240,20 +240,20 @@ public class ChronoTimerFORTESTSONLY {
         }
     }
 
-    static void trigChannel(int channel) {
+      static void trigChannel(int channel) {
 
         if (event.equalsIgnoreCase("GRP")) {
             if (channel == 1) {
                 start();
             } else if (channel == 2) {
                 if (totRacers == 0) {
-                   // GUI.stdoutArea.appendText("Race not started\n");
+                    GUI.stdoutArea.appendText("Race not started\n");
                 } else {
-                   // GUI.stdoutArea.appendText("Triggered\n");
+                    GUI.stdoutArea.appendText("Triggered\n");
                     updGRP();
                 }
             } else {
-               // GUI.stdoutArea.appendText("Invalid channel for this race\n");
+                GUI.stdoutArea.appendText("Invalid channel for this race\n");
             }
             updScreen();
             return;
@@ -279,13 +279,13 @@ public class ChronoTimerFORTESTSONLY {
             }
             if(completed.size() == totRacers)
             {
-                //GUI.stdoutArea.appendText(" all racers finished " + "\n");
+                GUI.stdoutArea.appendText(" all racers finished " + "\n");
             }
             updScreen();
             return;
         }
 
-        else if (channel < MAX_CHANNELS && channel > 0) {
+        else if (channel <= MAX_CHANNELS && channel > 0) {
             // used for determining which list a racer is in
             boolean found = false;
 
@@ -296,7 +296,7 @@ public class ChronoTimerFORTESTSONLY {
                 // if start channel:
                 if (channel % 2 == 1) {
                     // if channel toggled on
-                    if (channels[channel] == true) {
+                    if (channels[channel-1] == true) {
                         // first, check if racer already started. If so, update
                         // his start time
                         if (!toFinish.isEmpty()) {
@@ -321,15 +321,15 @@ public class ChronoTimerFORTESTSONLY {
                         }
                         // if no racer found attached to channel
                         if (!found) {
-                         //   GUI.stdoutArea.appendText("No racer linked to that channel\n");
+                            GUI.stdoutArea.appendText("No racer linked to that channel\n");
                         }
                     } else {
-                       // GUI.stdoutArea.appendText("Channel was not toggled\n");
+                        GUI.stdoutArea.appendText("Channel was not toggled\n");
                     }
                 }
                 // if finish channel
                 if (channel % 2 == 0) {
-                    if (channels[channel] == true) {
+                    if (channels[channel-1] == true) {
                         // First, check if racer has already finished. If so,
                         // update his finish time
                         // If not, finish him
@@ -354,12 +354,12 @@ public class ChronoTimerFORTESTSONLY {
                         }
                         // if no racer found attached to channel
                         if (!found) {
-                           // GUI.stdoutArea.appendText("No racer linked to that channel\n");
+                            GUI.stdoutArea.appendText("No racer linked to that channel\n");
                         }
                     }
 
                     else {
-                       // GUI.stdoutArea.appendText("Channel was not toggled\n");
+                        GUI.stdoutArea.appendText("Channel was not toggled\n");
                     }
                 }
             }
@@ -394,7 +394,7 @@ public class ChronoTimerFORTESTSONLY {
                     }
                     // if no racer found attached to channel
                     if (!found) {
-                       // GUI.stdoutArea.appendText("No racer linked to that channel\n");
+                        GUI.stdoutArea.appendText("No racer linked to that channel\n");
                     }
                 }
                 // if finish channel
@@ -424,7 +424,7 @@ public class ChronoTimerFORTESTSONLY {
                     }
                     // if no racer found attached to channel
                     if (!found) {
-                        //GUI.stdoutArea.appendText("No racer linked to that channel\n");
+                        GUI.stdoutArea.appendText("No racer linked to that channel\n");
                     }
                 }
             }
@@ -432,7 +432,7 @@ public class ChronoTimerFORTESTSONLY {
         }
 
         else {
-            //GUI.stdoutArea.appendText("Invalid channel number\n");
+            GUI.stdoutArea.appendText("Invalid channel number\n");
         }
     }
 
