@@ -166,7 +166,7 @@ public class ChronoTimerTests {
         }
     }
 
-    @Test
+     @Test
     public void trigger() throws Exception {
         ChronoTimerFORTESTSONLY a = new ChronoTimerFORTESTSONLY();
         a.setPower();
@@ -181,15 +181,20 @@ public class ChronoTimerTests {
         a.num(13);
         a.num(14);
 
-        for(int i = 0; i < 4; ++i) {
+        a.trigChannel(1);
+        a.trigChannel(3);
+        a.trigChannel(5);
+        a.trigChannel(7);
 
+        assertEquals(a.totRacers, a.toFinish.size());
 
-        }
-    @Deployment
-    public static JavaArchive createDeployment() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addClass(Sprint3.GUI.class)
-                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+        a.trigChannel(2);
+        a.trigChannel(4);
+        a.trigChannel(6);
+        a.trigChannel(8);
+
+        assertEquals(a.totRacers, a.completed.size());
+
     }
 
 }
