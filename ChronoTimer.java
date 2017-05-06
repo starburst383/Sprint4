@@ -258,7 +258,7 @@ public class ChronoTimer {
         }
     }
 
-    static void trigChannel(int channel) {
+      static void trigChannel(int channel) {
 
         if (event.equalsIgnoreCase("GRP")) {
             if (channel == 1) {
@@ -303,7 +303,7 @@ public class ChronoTimer {
             return;
         }
 
-        else if (channel < MAX_CHANNELS && channel > 0) {
+        else if (channel <= MAX_CHANNELS && channel > 0) {
             // used for determining which list a racer is in
             boolean found = false;
 
@@ -314,7 +314,7 @@ public class ChronoTimer {
                 // if start channel:
                 if (channel % 2 == 1) {
                     // if channel toggled on
-                    if (channels[channel] == true) {
+                    if (channels[channel-1] == true) {
                         // first, check if racer already started. If so, update
                         // his start time
                         if (!toFinish.isEmpty()) {
@@ -347,7 +347,7 @@ public class ChronoTimer {
                 }
                 // if finish channel
                 if (channel % 2 == 0) {
-                    if (channels[channel] == true) {
+                    if (channels[channel-1] == true) {
                         // First, check if racer has already finished. If so,
                         // update his finish time
                         // If not, finish him
