@@ -373,6 +373,8 @@ public class GUI extends Application {
                 + "-fx-max-width: 30px; " + "-fx-max-height: 35px;");
         Darrow.setStyle("-fx-font-size: 13px; " + "-fx-min-width: 30px; " + "-fx-min-height: 35px; "
                 + "-fx-max-width: 30px; " + "-fx-max-height: 35px;");
+        usb.setStyle("-fx-min-width: 75px; " + "-fx-min-height: 20px; " + "-fx-max-width: 75px; "
+                + "-fx-max-height: 20px;");
 
         screen.setTranslateX(300);
         screen.setTranslateY(350);
