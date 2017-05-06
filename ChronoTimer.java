@@ -65,10 +65,26 @@ public class ChronoTimer {
     //}
 
     static void num(int racernum) {
-        totRacers++;
-        racers.add(new Racer(racernum, totRacers));
+        if(event.equalsIgnoreCase("PARGRP"))
+        {
+            if(totRacers < 8)
+            {
+                totRacers++;
+                racers.add(new Racer(racernum, totRacers));
 
-        GUI.stdoutArea.appendText("Racer " + racernum + " added\n");
+                GUI.stdoutArea.appendText("Racer " + racernum + " added\n");
+            }
+            else
+            {
+                GUI.stdoutArea.appendText("race full \n");
+            }
+        }
+        else {
+            totRacers++;
+            racers.add(new Racer(racernum, totRacers));
+
+            GUI.stdoutArea.appendText("Racer " + racernum + " added\n");
+        }
     }
 
     static void event(String input) {
