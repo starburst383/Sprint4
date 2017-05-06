@@ -131,6 +131,7 @@ public class GUI extends Application {
     Label sevenC = new Label("7");
     Label eightC = new Label("8");
     
+    Label chan = new Label("CHAN");
     Label port = new Label("USB PORT");
 
     Label start = new Label("Start");
@@ -223,15 +224,15 @@ public class GUI extends Application {
         seven.setTranslateX(407);
         seven.setTranslateY(40);
 
-        oneC.setTranslateX(23);
+        oneC.setTranslateX(63);
         oneC.setTranslateY(508);
-        threeC.setTranslateX(63);
+        threeC.setTranslateX(103);
         threeC.setTranslateY(508);
-        fiveC.setTranslateX(103);
+        fiveC.setTranslateX(143);
         fiveC.setTranslateY(508);
-        sevenC.setTranslateX(143);
+        sevenC.setTranslateX(183);
         sevenC.setTranslateY(508);
-
+        
         b1.setTranslateX(250);
         b1.setTranslateY(60);
         b3.setTranslateX(300);
@@ -250,13 +251,13 @@ public class GUI extends Application {
         eight.setTranslateX(407);
         eight.setTranslateY(140);
 
-        twoC.setTranslateX(23);
+        twoC.setTranslateX(63);
         twoC.setTranslateY(545);
-        fourC.setTranslateX(63);
+        fourC.setTranslateX(103);
         fourC.setTranslateY(545);
-        sixC.setTranslateX(103);
+        sixC.setTranslateX(143);
         sixC.setTranslateY(545);
-        eightC.setTranslateX(143);
+        eightC.setTranslateX(183);
         eightC.setTranslateY(545);
 
         b2.setTranslateX(250);
