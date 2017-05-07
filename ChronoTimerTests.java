@@ -246,7 +246,7 @@ public class ChronoTimerTests {
         //a.num(5);
 
     }
-
+    @Test
     public void swap() throws Exception{
         ChronoTimerFORTESTSONLY a = new ChronoTimerFORTESTSONLY();
         a.setPower();
