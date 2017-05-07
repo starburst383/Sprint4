@@ -66,7 +66,7 @@ public class ChronoTimer {
                 GUI.stdoutArea.appendText("Racer " + racernum + " added\n");
             }
             else {
-                GUI.stdoutArea.appendText("race full \n");
+                GUI.stdoutArea.appendText("Race full \n");
             }
         }
         else if(event.equalsIgnoreCase("GRP")){
@@ -76,7 +76,7 @@ public class ChronoTimer {
                 GUI.stdoutArea.appendText("Racer " + racernum + " added\n");
             }
             else{
-                GUI.stdoutArea.appendText("can't add racers after event start \n");
+                GUI.stdoutArea.appendText("Can't add racers after event start \n");
             }
         }
         else {
@@ -97,7 +97,7 @@ public class ChronoTimer {
                 else if (input.equalsIgnoreCase("PARIND")) {
                     event = input;
                     GUI.stdoutArea.appendText("Parallel Individual Race Selected\n");
-                    GUI.stdoutArea.appendText("toggles are fixed for PARIND \n");
+                    GUI.stdoutArea.appendText("Toggles are fixed for PARIND \n");
                     GUI.stdoutArea.appendText("Press * to start a new run\n");
 
                     channels[0] = true;
@@ -108,7 +108,7 @@ public class ChronoTimer {
                 else if (input.equalsIgnoreCase("GRP")) {
                     event = input;
                     GUI.stdoutArea.appendText("Group Race Selected\n");
-                    GUI.stdoutArea.appendText("toggles are fixed for GRP \n");
+                    GUI.stdoutArea.appendText("Toggles are fixed for GRP \n");
                     GUI.stdoutArea.appendText("Press * to start a new run\n");
 
                     channels[0] = true;
@@ -117,7 +117,7 @@ public class ChronoTimer {
                 else if  (input.equalsIgnoreCase("PARGRP")) {
                     event = input;
                     GUI.stdoutArea.appendText("Parallel Group Race Selected\n");
-                    GUI.stdoutArea.appendText("toggles are fixed for PARGRP \n");
+                    GUI.stdoutArea.appendText("Toggles are fixed for PARGRP \n");
                     GUI.stdoutArea.appendText("Press * to start a new run\n");
                 }
                 else {
@@ -166,18 +166,18 @@ public class ChronoTimer {
 
         GUI.stdoutArea.appendText("\nNew run started\n");
         GUI.stdoutArea.appendText("Add racer number one at a time,\n");
-        GUI.stdoutArea.appendText("and press # to enter each racer:\n\n");
+        GUI.stdoutArea.appendText("And press # to enter each racer:\n\n");
         if(event.equalsIgnoreCase("ind")) {
-            GUI.stdoutArea.appendText("when ready, toggle racer lane and \n trigger racer start to begin event");
+            GUI.stdoutArea.appendText("When ready, toggle racer lane and \n trigger racer start to begin event");
         }
         else if(event.equalsIgnoreCase("parind")) {
-            GUI.stdoutArea.appendText("when ready hit trigger 1 or 3 \n to start first racer\n");
+            GUI.stdoutArea.appendText("When ready hit trigger 1 or 3 \n to start first racer\n");
         }
         else if(event.equalsIgnoreCase("grp")) {
-            GUI.stdoutArea.appendText("when ready hit trigger 1 to\n begin race");
+            GUI.stdoutArea.appendText("When ready hit trigger 1 to\nbegin race\n");
         }
         else if(event.equalsIgnoreCase("Pargrp")) {
-            GUI.stdoutArea.appendText("when ready hit trigger 1 to\n begin race");
+            GUI.stdoutArea.appendText("When ready hit trigger 1 to\nbegin race\n");
         }
 
     }
@@ -581,4 +581,3 @@ public class ChronoTimer {
         return event;
     }
 }
-
