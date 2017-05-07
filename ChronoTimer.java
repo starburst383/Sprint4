@@ -391,7 +391,7 @@ public class ChronoTimer {
                         completed.add(next);
                     }
                     else {
-                        GUI.stdoutArea.appendText("no racer to finish\nSelect Printer to get result");
+                        GUI.stdoutArea.appendText("no racer to finish\nSelect Printer to get result\n");
                     }
                 }
                 else {
