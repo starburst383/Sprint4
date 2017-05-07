@@ -144,10 +144,11 @@ public class GUI extends Application {
     Box print = new Box(150, 150, 150);
     Box screen = new Box(250, 200, 200);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, IOException{
 
         launch(args);
         Chrono = new ChronoTimer();
+        Chrono.readFile();
     }
 
     public void start(Stage primaryStage) throws Exception {
