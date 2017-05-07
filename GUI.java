@@ -850,6 +850,7 @@ public class GUI extends Application {
                         Chrono.newRun();
                     }
                 }
+                update();
             }
         });
 
@@ -867,6 +868,7 @@ public class GUI extends Application {
                         }
                         Chrono.updScreen();
                     }
+                    update();
                 }
 
             }
