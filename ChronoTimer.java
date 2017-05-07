@@ -7,7 +7,7 @@ import java.time.*;
 
 public class ChronoTimer {
     // system
-    static final int MAX_CHANNELS = 1000;
+    static final int MAX_CHANNELS = 8;
     static boolean power;
     static boolean run;
     static boolean parun;
@@ -58,12 +58,6 @@ public class ChronoTimer {
         }
     }
 
-    //static void num() {
-    //    totRacers++;
-    //    racers.add(new Racer(Integer.parseInt(splitted[1]), totRacers));
-    //System.out.println("Racer " + splitted[1] + " has been added");
-    //}
-
     static void num(int racernum) {
         if(event.equalsIgnoreCase("PARGRP"))
         {
@@ -101,13 +95,20 @@ public class ChronoTimer {
                     event = input;
 
                     GUI.stdoutArea.appendText("Parallel Individual Race Selected\n");
+                    GUI.stdoutArea.appendText("toggles initialized, toggle disabled \n");
                     GUI.stdoutArea.appendText("Press * to start a new run\n");
+
+                    channels[0] = true;
+                    channels[1] = true;
+                    channels[2] = true;
+                    channels[3] = true;
                 }
 
                 else if (input.equalsIgnoreCase("GRP")) {
                     event = input;
 
                     GUI.stdoutArea.appendText("Group Race Selected\n");
+                    GUI.stdoutArea.appendText("toggles initialized, toggle disabled \n");
                     GUI.stdoutArea.appendText("Press * to start a new run\n");
                 }
 
@@ -116,6 +117,7 @@ public class ChronoTimer {
 
                     GUI.stdoutArea.appendText("Parallel Group Race Selected\n");
                     GUI.stdoutArea.appendText("Press * to start a new run\n");
+
                 }
 
                 else {
@@ -138,12 +140,6 @@ public class ChronoTimer {
 
         return (time.millis() - start) / 100;
 
-    }
-
-    // returns the current value/state of power
-    static boolean getPower() {
-
-        return power;
     }
 
     // sets the power to be its opposite value
@@ -174,6 +170,10 @@ public class ChronoTimer {
         GUI.stdoutArea.appendText("New run started\n");
         GUI.stdoutArea.appendText("Add racer numbers,\n");
         GUI.stdoutArea.appendText("press # to enter:\n");
+        if(event.equalsIgnoreCase("parind"))
+        {
+            GUI.stdoutArea.appendText("when ready hit trigger 1 or 2 \n to start first racer\n");
+        }
     }
 
     static void endrun() {
@@ -250,7 +250,10 @@ public class ChronoTimer {
             GUI.stdoutArea.appendText("Toggles disabled for group event\n");
             return;
         }
-
+        else if(event.equalsIgnoreCase("PARIND")){
+            GUI.stdoutArea.appendText("Toggles disabled for group event\n");
+            return;
+        }
         if (!channels[channel]) {
             channels[channel] = true;
         } else {
@@ -258,7 +261,7 @@ public class ChronoTimer {
         }
     }
 
-      static void trigChannel(int channel) {
+    static void trigChannel(int channel) {
 
         if (event.equalsIgnoreCase("GRP")) {
             if (channel == 1) {
@@ -385,66 +388,40 @@ public class ChronoTimer {
             else if (event.equalsIgnoreCase("PARIND")) {
                 // determine if start or finish channel
                 // if start channel:
+                if(channel == 1 || channel == 3)
+                {
+                    if(!racers.isEmpty())
+                    {
+                        Racer next = racers.remove();
+                        next.start = time.millis();
+                        toFinish.add(next);
+                    }
+                    else
+                    {
+                        GUI.stdoutArea.appendText("no racer to start \n");
+                    }
 
-                if (channel % 2 == 1) {
-                    // if channel toggled on
-                    // first, check if racer already started. If so, update
-                    // his start time
-                    if (!toFinish.isEmpty()) {
-                        for (Racer s : toFinish) {
-                            if (s.index == Math.ceil((double) channel / 2)) {
-                                s.start = time.millis();
-                                found = true;
-                            }
-                        }
+                }
+                else if(channel == 2 || channel == 4)
+                {
+                    if(!toFinish.isEmpty())
+                    {
+                        Racer next = toFinish.remove();
+                        next.fin = time.millis();
+                        completed.add(next);
                     }
-                    // If not, start the racer
-                    if (!racers.isEmpty() && !found) {
-                        for (Racer s : racers) {
-                            if (s.index == Math.ceil((double) channel / 2)) {
-                                temp.add(s);
-                                s.start = time.millis();
-                                toFinish.add(s);
-                                found = true;
-                            }
-                        }
-                        racers.removeAll(temp);
-                    }
-                    // if no racer found attached to channel
-                    if (!found) {
-                        GUI.stdoutArea.appendText("No racer linked to that channel\n");
+                    else
+                    {
+                        GUI.stdoutArea.appendText("no racer to finish \n");
                     }
                 }
-                // if finish channel
-                if (channel % 2 == 0) {
-                    // First, check if racer has already finished. If so,
-                    // update his finish time
-                    // If not, finish him
-                    if (!completed.isEmpty()) {
+                else
+                {
 
-                        for (Racer s : completed) {
-                            if (s.index == Math.ceil((double) channel / 2)) {
-                                s.fin = time.millis();
-                                found = true;
-                            }
-                        }
-                    }
-                    if (!toFinish.isEmpty() && !found) {
-                        for (Racer s : toFinish) {
-                            if (s.index == Math.ceil((double) channel / 2)) {
-                                temp.add(s);
-                                s.fin = time.millis();
-                                completed.add(s);
-                                found = true;
-                            }
-                        }
-                        toFinish.removeAll(temp);
-                    }
-                    // if no racer found attached to channel
-                    if (!found) {
-                        GUI.stdoutArea.appendText("No racer linked to that channel\n");
-                    }
+                    GUI.stdoutArea.appendText("invalid trigger number for this race \n");
+
                 }
+
             }
             updScreen();
         }
@@ -582,4 +559,20 @@ public class ChronoTimer {
                     + "  " + stopWatch.formatTime(completed.get(i).fin - completed.get(i).start) + "\n");
         }
     }
+    ////////////////// getters ///////////////////////
+
+    // returns the current value/state of power
+    static boolean getPower() {
+
+        return power;
+    }
+    static boolean getRun() {
+
+        return run;
+    }
+    static String getEvent() {
+
+        return event;
+    }
 }
+
