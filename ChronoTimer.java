@@ -1,8 +1,19 @@
-package Sprint3;
+
 /**
  * Created by Duan on 4/23/2017.
  */
 import java.util.*;
+
+import com.google.gson.Gson;
+
+import java.awt.Desktop;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.*;
 
 public class ChronoTimer {
@@ -21,6 +32,9 @@ public class ChronoTimer {
     static LinkedList<Racer> racers = new LinkedList<Racer>();
     static LinkedList<Racer> toFinish = new LinkedList<Racer>();
     static LinkedList<Racer> completed = new LinkedList<Racer>();
+	static LinkedList<Racer> sorted = new LinkedList<Racer>();
+	static LinkedList<Racer> fileRacers = new LinkedList<Racer>();
+	static LinkedList<ResultRacer> output = new LinkedList<ResultRacer>();
     // array of race end times [racers][bib#,end time]
     static long GRP[][];
     // how many racers have finished
@@ -37,6 +51,12 @@ public class ChronoTimer {
     static String[] splitted;
 
     static int runCounter = 0;
+    
+    static File actual; 
+	static String sharedResponse = "";
+	static Client s = new Client();
+	static String css;
+	static String html;
 
     public ChronoTimer() {
 
@@ -46,6 +66,22 @@ public class ChronoTimer {
         out = false;
         ChronoTimer.channels = new boolean[MAX_CHANNELS];
     }
+    
+    public static void readFile() throws FileNotFoundException, IOException {
+		actual = new File("src/racers.txt");
+		try (BufferedReader br = new BufferedReader(new FileReader(actual))) {
+			String[] split;
+			String line;
+			while ((line = br.readLine()) != null) {
+				split = line.split("\\s+");
+				fileRacers.add(new Racer(Integer.parseInt(split[0]), split[1] + " " + split[2]));
+
+			}
+		}
+		for (Racer rac : fileRacers) {
+			rac.printFileRacers();
+		}
+	}
 
     static void receipt() {
         // Cycles through the completed linkedlist and prints out the racer's
@@ -195,18 +231,23 @@ public class ChronoTimer {
 
     }
 
-    static void endrun() {
-        Converter.ConvertTo(completed, runCounter);
-        run = false;
-        parun = false;
-        racers.clear();
-        toFinish.clear();
-        completed.clear();
-        totRacers = 0;
-        GRP = null;
-        GRPC = 0;
-        GUI.stdoutArea.appendText("run ended\n");
-    }
+	static void endrun() {
+		Converter.ConvertTo(completed, runCounter);
+		run = false;
+		createOutput();
+		create_print_html(output);
+		for (ResultRacer e : output){
+			s.add(e);
+		}
+		racers.clear();
+		toFinish.clear();
+		completed.clear();
+		totRacers = 0;
+		GRP = null;
+		GRPC = 0;
+		GUI.stdoutArea.appendText("run ended\n");
+		System.out.println("Run ended \n");
+	}
 
     static void reset() {
         for (int i = 0; i < channels.length; i++) {
@@ -610,4 +651,98 @@ public class ChronoTimer {
 
         return event;
     }
+    
+    public static void createOutput(){
+		for (Racer e : completed) {
+			e.time = e.fin - e.start;
+		}
+
+		Collections.sort(completed, new timeComparator());
+
+		for (Racer rac : completed) {
+			sorted.add(rac);
+		}
+		for (Racer rac : racers) {
+			sorted.add(rac);
+		}
+		for (Racer rac : toFinish) {
+			sorted.add(rac);
+		}
+		
+		for (Racer rac : sorted){
+			for (Racer temp : fileRacers){
+				if (rac.racerNum == temp.racerNum){
+					rac.name = temp.name;
+				}
+			}
+		}
+		
+		int i = 1;
+		for (Racer rac : sorted){
+			output.add(new ResultRacer(i, rac.racerNum, rac.name, rac.time));
+			i++;
+		}
+	}
+
+	public static void create_print_html(LinkedList<ResultRacer> out) {
+		String cssurl = "styles.css";
+		String url = "index.html";
+		Gson g = new Gson();
+
+		// ArrayList<Racer> printThis = new ArrayList<>();
+		
+
+		String json = g.toJson(out);
+
+		// create text of css file
+		css = "tr:nth-of-type(odd) {background-color:#42f45f; } body {background-color: powderblue;}";
+
+		// create text of html file
+		html = "<html>   <head>   <title>Lab 8</title>   <link rel=\"stylesheet\" href=\"" + cssurl
+				+ "\"> <meta charset=\"UTF-8\">       <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js\"></script>       <title>title</title>   </head>   <body onLoad=\"buildHtmlTable('#excelDataTable')\">   <table id=\"excelDataTable\" border=\"1\">  <caption>Racers</caption> </table>  <script> var myList = "
+				+ json
+				+ ";  function buildHtmlTable(selector) {   var columns = addAllColumnHeaders(myList, selector);    for (var i = 0; i < myList.length; i++) {     var row$ = $('<tr/>');     for (var colIndex = 0; colIndex < columns.length; colIndex++) {       var cellValue = myList[i][columns[colIndex]];       if (cellValue == null) cellValue = \"\";       row$.append($('<td/>').html(cellValue));     }     $(selector).append(row$);   } }  function addAllColumnHeaders(myList, selector) {   var columnSet = [];   var headerTr$ = $('<tr/>');    for (var i = 0; i < myList.length; i++) {     var rowHash = myList[i];     for (var key in rowHash) {       if ($.inArray(key, columnSet) == -1) {         columnSet.push(key);         headerTr$.append($('<th/>').html(key));       }     }   }   $(selector).append(headerTr$);    return columnSet; }       </script> </body>  </html>";
+
+		// create the css file
+
+		File cssfile = new File(cssurl);
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(cssfile));
+			bw.write(css);
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// create the html file
+
+		File f = new File(url);
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+			bw.write(html);
+			bw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// run the html file:
+
+		try {
+			Desktop.getDesktop().browse(f.toURI());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 }
+
+class timeComparator implements Comparator<Racer> {
+	@Override
+	public int compare(Racer a, Racer b) {
+		return a.time < b.time ? -1 : a.time == b.time ? 0 : 1;
+	}
+}
+
