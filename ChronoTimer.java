@@ -395,6 +395,28 @@ public class ChronoTimer {
         }
     }
 
+    static void swap(){
+        if (event.equalsIgnoreCase("IND")) {
+            if (toFinish.size() >= 2) {
+                GUI.stdoutArea.appendText("You are able to swap\n");
+                int tmp = toFinish.get(0).index;
+                toFinish.get(0).index = toFinish.get(1).index;
+                toFinish.get(1).index = tmp;
+
+                Racer temp = toFinish.removeFirst();
+                toFinish.add(1, temp);
+                }
+                else {
+                    GUI.stdoutArea.appendText("Not enough racers to swap\n");
+                }
+            }
+            else {
+                GUI.stdoutArea.appendText("Can only use this feature in event IND\n");
+            }
+    }
+
+    
+    
     static void printlists() {
         GUI.stdoutArea.appendText("racers: \n");
         for (Racer s : racers) {
