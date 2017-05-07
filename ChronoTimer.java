@@ -168,16 +168,16 @@ public class ChronoTimer {
         GUI.stdoutArea.appendText("Add racer number one at a time,\n");
         GUI.stdoutArea.appendText("And press # to enter each racer:\n\n");
         if(event.equalsIgnoreCase("ind")) {
-            GUI.stdoutArea.appendText("When ready, toggle racer lane and \n trigger racer start to begin event");
+            GUI.stdoutArea.appendText("When ready, toggle racer lane and \nTrigger racer start to begin event\n\n");
         }
         else if(event.equalsIgnoreCase("parind")) {
-            GUI.stdoutArea.appendText("When ready hit trigger 1 or 3 \n to start first racer\n");
+            GUI.stdoutArea.appendText("When ready hit trigger 1 or 3 \nTo start first racer\n\n");
         }
         else if(event.equalsIgnoreCase("grp")) {
-            GUI.stdoutArea.appendText("When ready hit trigger 1 to\nbegin race\n");
+            GUI.stdoutArea.appendText("When ready hit trigger 1 to\nBegin race\n\n");
         }
         else if(event.equalsIgnoreCase("Pargrp")) {
-            GUI.stdoutArea.appendText("When ready hit trigger 1 to\nbegin race\n");
+            GUI.stdoutArea.appendText("When ready hit trigger 1 to\nBegin race\n");
         }
 
     }
@@ -216,7 +216,7 @@ public class ChronoTimer {
         GUI.stdoutArea.appendText("   1. IND\n");
         GUI.stdoutArea.appendText("   2. PARIND\n");
         GUI.stdoutArea.appendText("   3. GRP\n");
-        GUI.stdoutArea.appendText("   4. PARGRP\n");
+        GUI.stdoutArea.appendText("   4. PARGRP\n\n");
     }
 
     static void start() {
@@ -226,11 +226,11 @@ public class ChronoTimer {
             // race will begin on start.
             if (event.equalsIgnoreCase("GRP")) {
                 InitGRP();
-                GUI.stdoutArea.appendText("Racers are off!\n");
+                GUI.stdoutArea.appendText("Racers are off!\n\n");
             }
             else if(event.equalsIgnoreCase("PARGRP")) {
                 InitGRP();
-                GUI.stdoutArea.appendText("Racers are off!\n");
+                GUI.stdoutArea.appendText("Racers are off!\n\n");
             }
             else {
                 // look at first racer's start channel and let trigChannel doth rest
@@ -238,7 +238,7 @@ public class ChronoTimer {
             }
         }
         else {
-            GUI.stdoutArea.appendText("No racers to start\n");
+            GUI.stdoutArea.appendText("No racers to start\n\n");
         }
     }
 
@@ -247,21 +247,21 @@ public class ChronoTimer {
             trigChannel(toFinish.getFirst().index * 2);
         }
         else {
-            GUI.stdoutArea.appendText("No racers to finish\n");
+            GUI.stdoutArea.appendText("No racers to finish\n\n");
         }
     }
 
     static void togChannel(int channel) {
         if (event.equalsIgnoreCase("GRP")) {
-            GUI.stdoutArea.appendText("Toggles disabled for group event\n");
+            GUI.stdoutArea.appendText("Toggles disabled for group event\n\n");
             return;
         }
         else if(event.equalsIgnoreCase("PARGRP")){
-            GUI.stdoutArea.appendText("Toggles disabled for group event\n");
+            GUI.stdoutArea.appendText("Toggles disabled for group event\n\n");
             return;
         }
         else if(event.equalsIgnoreCase("PARIND")){
-            GUI.stdoutArea.appendText("Toggles disabled for group event\n");
+            GUI.stdoutArea.appendText("Toggles disabled for group event\n\n");
             return;
         }
 
@@ -280,7 +280,7 @@ public class ChronoTimer {
             }
             else if (channel == 2) {
                 if (totRacers == 0) {
-                    GUI.stdoutArea.appendText("Race not started\n");
+                    GUI.stdoutArea.appendText("Race not started\n\n");
                 }
                 else {
                     GUI.stdoutArea.appendText((GRPC+1) + " racers finished \n");
@@ -288,7 +288,7 @@ public class ChronoTimer {
                 }
             }
             else {
-                GUI.stdoutArea.appendText("Invalid channel for this race\n");
+                GUI.stdoutArea.appendText("Invalid channel for this race\n\n");
             }
             updScreen();
             return;
@@ -310,7 +310,7 @@ public class ChronoTimer {
             }
 
             if(completed.size() == totRacers) {
-                GUI.stdoutArea.appendText(" all racers finished " + "\n");
+                GUI.stdoutArea.appendText(" all racers finished " + "\n\n");
             }
             updScreen();
             return;
@@ -350,11 +350,11 @@ public class ChronoTimer {
                         }
                         // if no racer found attached to channel
                         if (!found) {
-                            GUI.stdoutArea.appendText("No racer linked to that channel\n");
+                            GUI.stdoutArea.appendText("No racer linked to that channel\n\n");
                         }
                     }
                     else {
-                        GUI.stdoutArea.appendText("Channel was not toggled\n");
+                        GUI.stdoutArea.appendText("Channel was not toggled\n\n");
                     }
                 }
                 // if finish channel
@@ -384,11 +384,11 @@ public class ChronoTimer {
                         }
                         // if no racer found attached to channel
                         if (!found) {
-                            GUI.stdoutArea.appendText("No racer linked to that channel\n");
+                            GUI.stdoutArea.appendText("No racer linked to that channel\n\n");
                         }
                     }
                     else {
-                        GUI.stdoutArea.appendText("Channel was not toggled\n");
+                        GUI.stdoutArea.appendText("Channel was not toggled\n\n");
                     }
                 }
             }
@@ -402,7 +402,7 @@ public class ChronoTimer {
                         toFinish.add(next);
                     }
                     else {
-                        GUI.stdoutArea.appendText("no racer to start \n");
+                        GUI.stdoutArea.appendText("no racer to start \n\n");
                     }
 
                 }
@@ -413,24 +413,24 @@ public class ChronoTimer {
                         completed.add(next);
                     }
                     else {
-                        GUI.stdoutArea.appendText("no racer to finish\nSelect Printer to get result\n");
+                        GUI.stdoutArea.appendText("no racer to finish\nSelect Printer to get result\n\n");
                     }
                 }
                 else {
-                    GUI.stdoutArea.appendText("invalid trigger number for this race \n");
+                    GUI.stdoutArea.appendText("invalid trigger number for this race \n\n");
                 }
             }
             updScreen();
         }
         else {
-            GUI.stdoutArea.appendText("Invalid channel number\n");
+            GUI.stdoutArea.appendText("Invalid channel number\n\n");
         }
     }
 
     static void swap(){
         if (event.equalsIgnoreCase("IND")) {
             if (toFinish.size() >= 2) {
-                GUI.stdoutArea.appendText("You are able to swap\n");
+                GUI.stdoutArea.appendText("Swap completed \n\n");
                 int tmp = toFinish.get(0).index;
                 toFinish.get(0).index = toFinish.get(1).index;
                 toFinish.get(1).index = tmp;
@@ -439,26 +439,26 @@ public class ChronoTimer {
                 toFinish.add(1, temp);
             }
             else {
-                GUI.stdoutArea.appendText("Not enough racers to swap\n");
+                GUI.stdoutArea.appendText("Not enough racers to swap\n\n");
             }
         }
         else {
-            GUI.stdoutArea.appendText("Can only use this feature in event IND\n");
+            GUI.stdoutArea.appendText("Can only use swap in event IND\n\n");
         }
     }
 
 
 
     static void printlists() {
-        GUI.stdoutArea.appendText("racers: \n");
+        GUI.stdoutArea.appendText("Have Not Raced: \n");
         for (Racer s : racers) {
             GUI.stdoutArea.appendText(String.valueOf("Racer " + s.racerNum +  " time: " + stopWatch.formatTime(s.fin - s.start) + "\n"));
         }
-        GUI.stdoutArea.appendText("toFinish: \n");
+        GUI.stdoutArea.appendText("Racing: \n");
         for (Racer s : toFinish) {
             GUI.stdoutArea.appendText(String.valueOf("Racer " + s.racerNum +  " time: " + stopWatch.formatTime(s.fin - s.start) + "\n"));
         }
-        GUI.stdoutArea.appendText("completed:  \n");
+        GUI.stdoutArea.appendText("Finished:  \n");
         for (Racer s : completed) {
             GUI.stdoutArea.appendText(String.valueOf("Racer " + s.racerNum +  " time: " + stopWatch.formatTime(s.fin - s.start) + "\n"));
         }
@@ -512,7 +512,7 @@ public class ChronoTimer {
         // check if all racer finished
         if (GRPC == totRacers) {
 
-            GUI.stdoutArea.appendText("All racers have finished!\nEnter their race order\n");
+            GUI.stdoutArea.appendText("All racers have finished!\nEnter their race order, one racer at a time,\n then hit # to submit each racer\n");
             // get racer order
             out = true;
             GRPF = new String[GRPC];
@@ -549,19 +549,19 @@ public class ChronoTimer {
 
     static void updScreen() {
         GUI.resultArea.clear();
-        GUI.resultArea.appendText("To race:\n");
+        GUI.resultArea.appendText("RACER QUEUE:\n");
         for (int i = 0; i < racers.size(); ++i) {
-            GUI.resultArea.appendText(String.valueOf(racers.get(i).racerNum) + "\n");
+            GUI.resultArea.appendText("racer: " + String.valueOf(racers.get(i).racerNum) + "\n");
         }
 
-        GUI.resultArea.appendText("Racing:\n");
+        GUI.resultArea.appendText("RACING:\n");
         for (int i = 0; i < toFinish.size(); ++i) {
-            GUI.resultArea.appendText(String.valueOf(toFinish.get(i).racerNum) + "\n");
+            GUI.resultArea.appendText("racer: " +  String.valueOf(toFinish.get(i).racerNum) + "\n");
         }
 
-        GUI.resultArea.appendText("Completed:\n");
+        GUI.resultArea.appendText("FINISHED:\n");
         for (int i = 0; i < completed.size(); ++i) {
-            GUI.resultArea.appendText(String.valueOf(completed.get(i).racerNum)
+            GUI.resultArea.appendText("racer: " +  String.valueOf(completed.get(i).racerNum)
                     + "  " + stopWatch.formatTime(completed.get(i).fin - completed.get(i).start) + "\n");
         }
     }
