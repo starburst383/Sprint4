@@ -95,6 +95,7 @@ public class ChronoTimer {
     }
 
     static void num(int racernum) {
+     if(run){
         if(event.equalsIgnoreCase("PARGRP")) {
             if(totRacers < 8) {
                 totRacers++;
@@ -133,6 +134,7 @@ public class ChronoTimer {
             racers.add(new Racer(racernum, totRacers));
             GUI.stdoutArea.appendText("Racer " + racernum + " added\n");
         }
+     }
     }
 
     static void event(String input) {
