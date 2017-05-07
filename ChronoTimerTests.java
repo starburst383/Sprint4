@@ -43,6 +43,7 @@ public class ChronoTimerTests {
     public void power() throws Exception {
         ChronoTimerFORTESTSONLY a = new ChronoTimerFORTESTSONLY();
         assertNotEquals(a,null);
+        System.out.println(a.getPower());
         assertFalse(a.getPower());
         a.setPower();
         assertTrue(a.getPower());
@@ -161,37 +162,91 @@ public class ChronoTimerTests {
     public void triggerStartFinish() throws Exception {
         ChronoTimerFORTESTSONLY a = new ChronoTimerFORTESTSONLY();
         a.setPower();
+
         // for individual event
         a.event("IND");
         a.newRun();
-
         loop(a);
-
         a.num(11);
         a.num(12);
         a.num(13);
         a.num(14);
+        assertEquals(a.totRacers, a.racers.size());
+        assertEquals(0, a.toFinish.size());
+        assertEquals(0, a.completed.size());
 
+        // testing start, should move all racers from racers list to toFinish list
         a.trigChannel(1);
         a.trigChannel(3);
         a.trigChannel(5);
         a.trigChannel(7);
-
+        assertEquals(0, a.racers.size());
         assertEquals(a.totRacers, a.toFinish.size());
+        assertEquals(0, a.completed.size());
 
+        // testing finish, should move all racers from toFinish list to completed list
         a.trigChannel(2);
         a.trigChannel(4);
         a.trigChannel(6);
         a.trigChannel(8);
-
+        assertEquals(0, a.racers.size());
+        assertEquals(0, a.toFinish.size());
         assertEquals(a.totRacers, a.completed.size());
-        a.reset();
+
         // for parallel individual event
+        a.reset();
         a.event("PARIND");
         a.newRun();
+        a.num(1);
+        a.num(2);
+        a.num(3);
+        a.num(4);
+        a.num(5);
+
+        // testing start for PARIND
+        a.trigChannel(1);
+        a.trigChannel(1);
+        assertEquals(3, a.racers.size());
+        assertEquals(2, a.toFinish.size());
+        assertEquals(0, a.completed.size());
+        a.trigChannel(3);
+        a.trigChannel(3);
+        assertEquals(1, a.racers.size());
+        assertEquals(4, a.toFinish.size());
+        assertEquals(0, a.completed.size());
+        a.trigChannel(1);
+        assertEquals(0, a.racers.size());
+        assertEquals(a.totRacers, a.toFinish.size());
+        assertEquals(0, a.completed.size());
+
+        // testing finish for PARIND
+        a.trigChannel(2);
+        a.trigChannel(2);
+        assertEquals(0, a.racers.size());
+        assertEquals(3, a.toFinish.size());
+        assertEquals(2, a.completed.size());
+        a.trigChannel(4);
+        a.trigChannel(4);
+        assertEquals(0, a.racers.size());
+        assertEquals(1, a.toFinish.size());
+        assertEquals(4, a.completed.size());
+        a.trigChannel(2);
+        assertEquals(0, a.racers.size());
+        assertEquals(0, a.toFinish.size());
+        assertEquals(a.totRacers, a.completed.size());
+
+        // for group event
+        //a.reset();
+        //a.event("GRP");
+        //a.newRun();
+        //a.num(1);
+        //a.num(2);
+        //a.num(3);
+        //a.num(4);
+        //a.num(5);
+
     }
 
-    @Test
     public void swap() throws Exception{
         ChronoTimerFORTESTSONLY a = new ChronoTimerFORTESTSONLY();
         a.setPower();
@@ -205,23 +260,16 @@ public class ChronoTimerTests {
         a.num(12);
 
         int temp = 11;
-
-
-
+        
         a.trigChannel(1);
         a.trigChannel(3);
-
         assertEquals(a.totRacers, a.toFinish.size());
-
         assertEquals(temp, a.toFinish.getFirst().racerNum);
 
         a.swap();
-
-
         assertEquals(temp, a.toFinish.getLast().racerNum);
-
     }
-    
+
     public void loop (ChronoTimerFORTESTSONLY a) {
         for(int i = 0; i < 8; ++i) {
             a.togChannel(i);
