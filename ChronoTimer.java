@@ -413,8 +413,8 @@ public class ChronoTimer {
     static void InitGRP() {
         if (event.equalsIgnoreCase("GRP")) {
             // turn on event channels
+            channels[0] = true;
             channels[1] = true;
-            channels[2] = true;
             // set up end time array GRP[][]
             long initial = time.millis();
             int current = racers.size();
@@ -479,7 +479,7 @@ public class ChronoTimer {
 
     static void endGRP(String[] nums) {
         for (int i = 0; (i < nums.length) && (i < totRacers); ++i) {
-            ListIterator<Racer> we = racers.listIterator();
+            ListIterator<Racer> we = toFinish.listIterator();
             while (we.hasNext()) {
                 Racer temp = we.next();
                 int n = Integer.parseInt(nums[i]);
@@ -489,7 +489,7 @@ public class ChronoTimer {
             }
         }
         // add racers to completed
-        while (!racers.isEmpty()) {
+        while (!toFinish.isEmpty()) {
             completed.add(toFinish.pop());
         }
         updScreen();
