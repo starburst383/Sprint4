@@ -282,7 +282,7 @@ public class ChronoTimer {
                     if(temp.index == channel) {
                         temp.fin = time.millis();
                         completed.add(toFinish.remove(i));
-                        channels[channel] = false;
+                        channels[channel-1] = false;
                     }
                 }
             }
@@ -465,7 +465,7 @@ public class ChronoTimer {
         }
 
         else if(event.equalsIgnoreCase("PARGRP")){
-            for(int i =  0; i <= totRacers; i++){
+            for(int i =  0; i < totRacers; i++){
                 channels[i] = true;
             }
             parun = false;
