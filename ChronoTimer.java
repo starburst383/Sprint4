@@ -69,6 +69,16 @@ public class ChronoTimer {
                 GUI.stdoutArea.appendText("race full \n");
             }
         }
+        else if(event.equalsIgnoreCase("GRP")){
+            if(GRPC == 0){
+                totRacers++;
+                racers.add(new Racer(racernum, totRacers));
+                GUI.stdoutArea.appendText("Racer " + racernum + " added\n");
+            }
+            else{
+                GUI.stdoutArea.appendText("can't add racers after event start \n");
+            }
+        }
         else {
             totRacers++;
             racers.add(new Racer(racernum, totRacers));
