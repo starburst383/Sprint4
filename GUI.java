@@ -473,8 +473,8 @@ public class GUI extends Application {
 
         stdoutArea.setTranslateX(475);
         stdoutArea.setTranslateY(50);
-        stdoutArea.setPrefColumnCount(15);
-        stdoutArea.setPrefRowCount(10);
+        stdoutArea.setPrefColumnCount(16);
+        stdoutArea.setPrefRowCount(12);
 
         Rectangle rect = new Rectangle(700, 500, Color.BLACK);
         off.getChildren().add(rect);
