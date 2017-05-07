@@ -191,6 +191,37 @@ public class ChronoTimerTests {
         a.newRun();
     }
 
+    @Test
+    public void swap() throws Exception{
+        ChronoTimerFORTESTSONLY a = new ChronoTimerFORTESTSONLY();
+        a.setPower();
+        a.event("IND");
+        a.newRun();
+        for(int i = 0; i < 8; ++i) {
+            a.togChannel(i);
+            assertTrue(a.channels[i]);
+        }
+        a.num(11);
+        a.num(12);
+
+        int temp = 11;
+
+
+
+        a.trigChannel(1);
+        a.trigChannel(3);
+
+        assertEquals(a.totRacers, a.toFinish.size());
+
+        assertEquals(temp, a.toFinish.getFirst().racerNum);
+
+        a.swap();
+
+
+        assertEquals(temp, a.toFinish.getLast().racerNum);
+
+    }
+    
     public void loop (ChronoTimerFORTESTSONLY a) {
         for(int i = 0; i < 8; ++i) {
             a.togChannel(i);
