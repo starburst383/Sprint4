@@ -187,11 +187,7 @@ public class GUI extends Application {
         ComboBox round8C = new ComboBox<String>(FXCollections.observableArrayList("Gate", "Eye", "Pad"));
         round8C.getSelectionModel().select(0);
         round8C.setId("changed");
-
-
-
-
-
+        
         // power1.setOnAction(e -> window.setScene(ON));
         power1.setTranslateX(10);
         power1.setTranslateY(10);
@@ -457,8 +453,7 @@ public class GUI extends Application {
 
         port.setTranslateX(480);
         port.setTranslateY(530);
-
-
+        
         round2C.setTranslateX(60);
         round2C.setTranslateY(563);
         round4C.setTranslateX(100);
@@ -886,97 +881,89 @@ public class GUI extends Application {
         window.setScene(OF);
         window.show();
     }
-    public void update()
-    {
-        if(Chrono.channels[0])
-        {
+    
+    public void update() {
+        if(Chrono.channels[0]) {
             round1.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
                     + "-fx-max-height: 16px;");
         }
-        else
-        {
+        else {
             round1.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
-        if(Chrono.channels[1])
-        {
+        
+        if(Chrono.channels[1]) {
             round2.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
                     + "-fx-max-height: 16px;");
         }
-        else
-        {
+        else {
             round2.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
-        if(Chrono.channels[2])
-        {
+        
+        if(Chrono.channels[2]) {
             round3.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
                     + "-fx-max-height: 16px;");
         }
-        else
-        {
+        else {
             round3.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
-        if(Chrono.channels[3])
-        {
+        
+        if(Chrono.channels[3]) {
             round4.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
                     + "-fx-max-height: 16px;");
         }
-        else
-        {
+        else {
             round4.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
-        if(Chrono.channels[4])
-        {
+        
+        if(Chrono.channels[4]) {
             round5.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
                     + "-fx-max-height: 16px;");
         }
-        else
-        {
+        else {
             round5.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
-        if(Chrono.channels[5])
-        {
+        
+        if(Chrono.channels[5]) {
             round6.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
                     + "-fx-max-height: 16px;");
         }
-        else
-        {
+        else {
             round6.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
-        if(Chrono.channels[6])
-        {
+        
+        if(Chrono.channels[6]) {
             round7.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
                     + "-fx-max-height: 16px;");
         }
-        else
-        {
+        else {
             round7.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
-        if(Chrono.channels[7])
-        {
+        
+        if(Chrono.channels[7]) {
             round8.setStyle("-fx-background-color: lawngreen; " + "-fx-background-radius: 80em; "
                     + "-fx-min-width: 16px; " + "-fx-min-height: 16px; " + "-fx-max-width: 16px; "
                     + "-fx-max-height: 16px;");
         }
-        else
-        {
+        else {
             round8.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                     + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
         }
     }
+    
     public void reset() {
         round1.setStyle("-fx-background-radius: 80em; " + "-fx-min-width: 16px; " + "-fx-min-height: 16px; "
                 + "-fx-max-width: 16px; " + "-fx-max-height: 16px;");
