@@ -79,6 +79,19 @@ public class ChronoTimer {
                 GUI.stdoutArea.appendText("Can't add racers after event start \n");
             }
         }
+        else if(event.equalsIgnoreCase("IND"))
+        {
+            totRacers++;
+            int Rnum = totRacers % 4;
+            if(Rnum == 0)
+            {
+                racers.add(new Racer(racernum, 4));
+            }
+            else {
+                racers.add(new Racer(racernum, Rnum));
+            }
+            GUI.stdoutArea.appendText("Racer " + racernum + " added\n");
+        }
         else {
             totRacers++;
             racers.add(new Racer(racernum, totRacers));
@@ -334,6 +347,10 @@ public class ChronoTimer {
                                     s.start = time.millis();
                                     found = true;
                                 }
+                                if(found)
+                                {
+                                    break;
+                                }
                             }
                         }
                         // If not, start the racer
@@ -344,6 +361,10 @@ public class ChronoTimer {
                                     s.start = time.millis();
                                     toFinish.add(s);
                                     found = true;
+                                }
+                                if(found)
+                                {
+                                    break;
                                 }
                             }
                             racers.removeAll(temp);
@@ -363,14 +384,6 @@ public class ChronoTimer {
                         // First, check if racer has already finished. If so,
                         // update his finish time
                         // If not, finish him
-                        if (!completed.isEmpty()) {
-                            for (Racer s : completed) {
-                                if (s.index == Math.ceil((double) channel / 2)) {
-                                    s.fin = time.millis();
-                                    found = true;
-                                }
-                            }
-                        }
                         if (!toFinish.isEmpty() && !found) {
                             for (Racer s : toFinish) {
                                 if (s.index == Math.ceil((double) channel / 2)) {
@@ -379,9 +392,26 @@ public class ChronoTimer {
                                     completed.add(s);
                                     found = true;
                                 }
+                                if(found)
+                                {
+                                    break;
+                                }
                             }
                             toFinish.removeAll(temp);
                         }
+                        if (!completed.isEmpty()) {
+                            for (Racer s : completed) {
+                                if (s.index == Math.ceil((double) channel / 2)) {
+                                    s.fin = time.millis();
+                                    found = true;
+                                }
+                                if(found)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+
                         // if no racer found attached to channel
                         if (!found) {
                             GUI.stdoutArea.appendText("No racer linked to that channel\n\n");
