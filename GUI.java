@@ -594,25 +594,11 @@ public class GUI extends Application {
             }
         });
 
-        swap.setOnAction(new EventHandler<ActionEvent>() {
+       swap.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                if (Chrono.event.equalsIgnoreCase("IND")) {
-                    if (Chrono.toFinish.size() >= 2) {
-                        stdoutArea.appendText("You are able to swap\n");
-                        int tmp = Chrono.toFinish.get(0).index;
-                        Chrono.toFinish.get(0).index = Chrono.toFinish.get(1).index;
-                        Chrono.toFinish.get(1).index = tmp;
-
-                        Racer temp = Chrono.toFinish.removeFirst();
-                        Chrono.toFinish.add(1, temp);
-                    }
-                    else {
-                        stdoutArea.appendText("Not enough racers to swap\n");
-                    }
-                }
-                else {
-                    stdoutArea.appendText("Can only use this feature in event IND\n");
-                }
+                Chrono.swap();
+                update();
+                Chrono.updScreen();
             }
         });
 
