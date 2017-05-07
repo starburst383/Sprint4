@@ -97,7 +97,7 @@ public class ChronoTimer {
                 else if (input.equalsIgnoreCase("PARIND")) {
                     event = input;
                     GUI.stdoutArea.appendText("Parallel Individual Race Selected\n");
-                    GUI.stdoutArea.appendText("toggles initialized, toggle disabled \n");
+                    GUI.stdoutArea.appendText("toggles are fixed for PARIND \n");
                     GUI.stdoutArea.appendText("Press * to start a new run\n");
 
                     channels[0] = true;
@@ -108,12 +108,16 @@ public class ChronoTimer {
                 else if (input.equalsIgnoreCase("GRP")) {
                     event = input;
                     GUI.stdoutArea.appendText("Group Race Selected\n");
-                    GUI.stdoutArea.appendText("toggles initialized, toggle disabled \n");
+                    GUI.stdoutArea.appendText("toggles are fixed for GRP \n");
                     GUI.stdoutArea.appendText("Press * to start a new run\n");
+
+                    channels[0] = true;
+                    channels[1] = true;
                 }
                 else if  (input.equalsIgnoreCase("PARGRP")) {
                     event = input;
                     GUI.stdoutArea.appendText("Parallel Group Race Selected\n");
+                    GUI.stdoutArea.appendText("toggles are fixed for PARGRP \n");
                     GUI.stdoutArea.appendText("Press * to start a new run\n");
                 }
                 else {
@@ -139,7 +143,7 @@ public class ChronoTimer {
     // sets the power to be its opposite value
     static void setPower() {
         power = !power;
-        reset();
+
 
         if (power == true) {
 
@@ -152,6 +156,7 @@ public class ChronoTimer {
         }
         else {
             GUI.stdoutArea.appendText("The power is off/n");
+            reset();
         }
     }
 
@@ -159,12 +164,22 @@ public class ChronoTimer {
         run = true;
         runCounter = runCounter + 1;
 
-        GUI.stdoutArea.appendText("New run started\n");
-        GUI.stdoutArea.appendText("Add racer numbers,\n");
-        GUI.stdoutArea.appendText("press # to enter:\n");
-        if(event.equalsIgnoreCase("parind")) {
+        GUI.stdoutArea.appendText("\nNew run started\n");
+        GUI.stdoutArea.appendText("Add racer number one at a time,\n");
+        GUI.stdoutArea.appendText("and press # to enter each racer:\n\n");
+        if(event.equalsIgnoreCase("ind")) {
+            GUI.stdoutArea.appendText("when ready, toggle racer lane and \n trigger racer start to begin event");
+        }
+        else if(event.equalsIgnoreCase("parind")) {
             GUI.stdoutArea.appendText("when ready hit trigger 1 or 3 \n to start first racer\n");
         }
+        else if(event.equalsIgnoreCase("grp")) {
+            GUI.stdoutArea.appendText("when ready hit trigger 1 to\n begin race");
+        }
+        else if(event.equalsIgnoreCase("Pargrp")) {
+            GUI.stdoutArea.appendText("when ready hit trigger 1 to\n begin race");
+        }
+
     }
 
     static void endrun() {
@@ -195,6 +210,13 @@ public class ChronoTimer {
         runCounter = 0;
         GRP = null;
         GRPC = 0;
+
+        GUI.stdoutArea.clear();
+        GUI.stdoutArea.appendText("Select an event\n");
+        GUI.stdoutArea.appendText("   1. IND\n");
+        GUI.stdoutArea.appendText("   2. PARIND\n");
+        GUI.stdoutArea.appendText("   3. GRP\n");
+        GUI.stdoutArea.appendText("   4. PARGRP\n");
     }
 
     static void start() {
@@ -261,7 +283,7 @@ public class ChronoTimer {
                     GUI.stdoutArea.appendText("Race not started\n");
                 }
                 else {
-                    GUI.stdoutArea.appendText("Triggered\n");
+                    GUI.stdoutArea.appendText((GRPC+1) + " racers finished \n");
                     updGRP();
                 }
             }
@@ -415,18 +437,18 @@ public class ChronoTimer {
 
                 Racer temp = toFinish.removeFirst();
                 toFinish.add(1, temp);
-                }
-                else {
-                    GUI.stdoutArea.appendText("Not enough racers to swap\n");
-                }
             }
             else {
-                GUI.stdoutArea.appendText("Can only use this feature in event IND\n");
+                GUI.stdoutArea.appendText("Not enough racers to swap\n");
             }
+        }
+        else {
+            GUI.stdoutArea.appendText("Can only use this feature in event IND\n");
+        }
     }
 
-    
-    
+
+
     static void printlists() {
         GUI.stdoutArea.appendText("racers: \n");
         for (Racer s : racers) {
@@ -444,9 +466,7 @@ public class ChronoTimer {
     // initialize GRP array and values when start is called.
     static void InitGRP() {
         if (event.equalsIgnoreCase("GRP")) {
-            // turn on event channels
-            channels[0] = true;
-            channels[1] = true;
+            // turn on event channel
             // set up end time array GRP[][]
             long initial = time.millis();
             int current = racers.size();
